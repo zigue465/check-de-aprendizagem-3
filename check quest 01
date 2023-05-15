@@ -1,0 +1,25 @@
+#include <stdio.h>
+
+int main(void) {
+  int opcao = 0;
+
+  do {
+    printf("Menu\nEscolha [1] ou [0]: "); 
+    scanf("%i", &opcao);
+    
+    switch(opcao) {
+      case 0:
+        printf("Escolheu 0");
+        break;
+
+      case 1:
+        printf("Escolheu 1");
+        break;
+
+      default:
+        printf("Error");
+        break;
+    }
+    printf("\n------------------------\n");
+  } while ((opcao != 0) && (opcao != 1));
+}
