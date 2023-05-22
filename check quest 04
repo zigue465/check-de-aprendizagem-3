@@ -1,0 +1,85 @@
+#include <stdio.h>
+
+int verificarSenha(int senhaCorreta) {
+    int senha;
+    printf("Digite a senha: ");
+    scanf("%d", &senha);
+    
+    while (senha != senhaCorreta) {
+        printf("Senha incorreta!\n");
+        printf("Digite a senha novamente: ");
+        scanf("%d", &senha);
+    }
+    
+    printf("Senha correta!\n");
+    return 1;
+}
+
+void urnaEletronica() {
+    int candidatos[5] = {0};
+    int voto;
+    int votosTotais = 0;
+    
+    printf("As opções são:\n");
+    printf("1. Candidato Jair Rodrigues\n");
+    printf("2. Candidato Carlos Luz\n");
+    printf("3. Candidato Neves Rocha\n");
+    printf("4. Nulo\n");
+    printf("5. Branco\n");
+    
+    do {
+        printf("Entre com o seu voto: ");
+        scanf("%d", &voto);
+        
+        if (voto >= 1 && voto <= 5) {
+            candidatos[voto - 1]++;
+            votosTotais++;
+        }
+    } while (voto != 6);
+    
+    float percentualNulos = (float)candidatos[3] / votosTotais * 100;
+    float percentualBrancos = (float)candidatos[4] / votosTotais * 100;
+    
+    printf("\n--- Resultado da Urna Eletrônica ---\n");
+    printf("Número de votos de cada candidato:\n");
+    printf("Candidato Jair Rodrigues: %d\n", candidatos[0]);
+    printf("Candidato Carlos Luz: %d\n", candidatos[1]);
+    printf("Candidato Neves Rocha: %d\n", candidatos[2]);
+    printf("Nulos: %d\n", candidatos[3]);
+    printf("Brancos: %d\n", candidatos[4]);
+    printf("\nPorcentagem de votos nulos: %.2f%%\n", percentualNulos);
+    printf("Porcentagem de votos brancos: %.2f%%\n", percentualBrancos);
+    
+    int candidatoVencedor = 0;
+    int maiorVotos = 0;
+    for (int i = 0; i < 3; i++) {
+        if (candidatos[i] > maiorVotos) {
+            candidatoVencedor = i + 1;
+            maiorVotos = candidatos[i];
+        }
+    }
+    
+    printf("\nCandidato vencedor: ");
+    switch (candidatoVencedor) {
+        case 1:
+            printf("Candidato Jair Rodrigues\n");
+            break;
+        case 2:
+            printf("Candidato Carlos Luz\n");
+            break;
+        case 3:
+            printf("Candidato Neves Rocha\n");
+            break;
+        default:
+            printf("Nenhum candidato venceu\n");
+            break;
+    }
+}
+
+int main() {
+    int senhaCorreta = 1234;
+    verificarSenha(senhaCorreta);
+    urnaEletronica();
+    
+    return 0;
+}
